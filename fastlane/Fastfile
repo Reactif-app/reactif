@@ -82,7 +82,7 @@ platform :ios do
 end
 
 platform :android do
-  desc "Upload Android AAB to Google Play Internal track with changelog metadata"
+  desc "Upload Android AAB to Google Play Internal track with store listing metadata and changelogs"
   lane :internal_release do |options|
     project_root = File.expand_path("..", __dir__)
 
@@ -90,7 +90,7 @@ platform :android do
     track = options[:track] || ENV["PLAY_TRACK"] || "internal"
     release_status = options[:release_status] || ENV["PLAY_RELEASE_STATUS"] || "draft"
     raw_json_key_path = options[:json_key] || ENV["PLAY_JSON_KEY"]
-    raw_metadata_path = options[:metadata_path] || ENV["PLAY_METADATA_PATH"] || ".ci/play-metadata/android"
+    raw_metadata_path = options[:metadata_path] || ENV["PLAY_METADATA_PATH"] || "fastlane/metadata/android"
 
     aab_path = Pathname.new(raw_aab_path).absolute? ? raw_aab_path : File.expand_path(raw_aab_path, project_root)
     json_key_path = if raw_json_key_path.to_s.strip.empty?
@@ -114,6 +114,7 @@ platform :android do
     UI.user_error!("Missing Google Play service account json path. Set PLAY_JSON_KEY or pass json_key.") if json_key_path.to_s.strip.empty?
     UI.user_error!("AAB not found at #{aab_path}") unless File.exist?(aab_path)
     UI.user_error!("Google Play json key file not found at #{json_key_path}") unless File.exist?(json_key_path)
+    UI.user_error!("Google Play metadata path not found at #{metadata_path}") unless Dir.exist?(metadata_path)
 
     supply(
       aab: aab_path,
