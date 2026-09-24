@@ -338,11 +338,11 @@ const styles = StyleSheet.create({
   mainPartnerLink: {
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 12,
+    marginBottom: 8,
   },
   mainPartnerLogo: {
-    width: 180,
-    height: 115,
+    width: 250,
+    height: 155,
   },
   secondaryPartnersRow: {
     width: "100%",
