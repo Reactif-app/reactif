@@ -121,6 +121,10 @@ const en = {
     electricShockEnergy: "Electric shock (Energy):",
     invalidAgeTitle: "Error",
     invalidAgeMessage: "Please enter an age.",
+    invalidAgeOver12MonthsMessage:
+      "For children over 12 months, specify age in years.",
+    invalidAgeOver12YearsMessage:
+      "For children over 12 years, please do a normal cpr.",
     invalidWeightMessage: "Please enter a weight.",
     invalidInputMessage: "Please select and enter one value (age or weight).",
   },

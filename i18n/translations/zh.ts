@@ -121,6 +121,8 @@ const zh = {
     electricShockEnergy: "电击（能量）：",
     invalidAgeTitle: "错误",
     invalidAgeMessage: "请输入年龄。",
+    invalidAgeOver12MonthsMessage: "12个月以上请填写年龄（岁）。",
+    invalidAgeOver12YearsMessage: "12岁以上儿童请进行正常心肺复苏。",
     invalidWeightMessage: "请输入体重。",
     invalidInputMessage: "请选择并输入一项数据（年龄或体重）。",
   },

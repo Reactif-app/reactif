@@ -46,6 +46,7 @@ export default function DisplayChildData() {
   } = data;
   // Only show age if computeMode is 'age'
   const shouldShowAge = ageValue > 0 && computeMode === "age";
+  const isAdultAge = ageMode === "years" && ageValue > 12;
 
   const handleStartPediatricCpr = () => {
     sessionStore.resetCurrentSessionStartTime();
@@ -65,14 +66,17 @@ export default function DisplayChildData() {
             </>
           )}
 
-          {computeMode === "age" && (
+          {computeMode === "age" && !isAdultAge && (
             <Text style={[styles.label, labelStyle]}>{t("childData.estimatedWeight")}</Text>
           )}
 
-          {computeMode === "weight" && (
+          {computeMode === "weight" && !isAdultAge && (
             <Text style={[styles.label, labelStyle]}>{t("childData.enteredWeight")}</Text>
           )}
-          <Text style={[styles.value, textStyle]}>{weight} kg</Text>
+
+          {!isAdultAge && (
+            <Text style={[styles.value, textStyle]}>{weight} kg</Text>
+          )}
 
           <View style={styles.separator} />
 
@@ -82,12 +86,16 @@ export default function DisplayChildData() {
           <Text style={[styles.label, labelStyle]}>Amiodarone ({t("session.cordarone")}):</Text>
           <Text style={[styles.value, textStyle]}>{cordaroneDose ? `${cordaroneDose} mg` : "N/A"}</Text>
 
-          <Text style={[styles.label, labelStyle]}>
-            {t("childData.electricShockEnergy")}
-          </Text>
-          <Text style={[styles.value, textStyle]}>
-            {energyDose ? `${energyDose} J` : "N/A"}
-          </Text>
+          {!isAdultAge && (
+            <>
+              <Text style={[styles.label, labelStyle]}>
+                {t("childData.electricShockEnergy")}
+              </Text>
+              <Text style={[styles.value, textStyle]}>
+                {energyDose ? `${energyDose} J` : "N/A"}
+              </Text>
+            </>
+          )}
         </View>
         <TouchableOpacity
           style={styles.validationButton}

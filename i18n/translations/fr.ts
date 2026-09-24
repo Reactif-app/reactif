@@ -121,6 +121,10 @@ const fr = {
     electricShockEnergy: "Choc électrique (Énergie):",
     invalidAgeTitle: "Erreur",
     invalidAgeMessage: "Veuillez entrer un âge.",
+    invalidAgeOver12MonthsMessage:
+      "Au-delà de 12 mois, préciser l’âge en années.",
+    invalidAgeOver12YearsMessage:
+      "Pour les enfants de plus de 12 ans, veuillez effectuer une RCP normale.",
     invalidWeightMessage: "Veuillez entrer un poids.",
     invalidInputMessage: "Veuillez sélectionner et entrer une donnée (âge ou poids).",
   },

@@ -1,0 +1,41 @@
+L’application RéACTIF est une aide à la réanimation cardio-pulmonaire (RCP) spécialisée pour les équipes d’urgence, de SMUR, de soins critiques et plus largement toutes les équipes impliquées dans la prise en charge d’un arrêt cardiaque. RéACTIF s’adresse à tous les acteurs de la RCP : médecin, infirmier, ambulancier ou aide-soignant.
+ RéACTIF est une aide cognitive de type Time Keeper qui intègre les minuteurs nécessaires pour la gestion précise des délais recommandés concernant l'analyse du rythme cardiaque et l'administration des traitements dans la prise en charge d’un arrêt cardiaque.
+L’application RéACTIF permet d’améliorer la qualité de la RCP et son intégration dans stratégies de réanimation spécialisées est aujourd’hui largement encouragée par les sociétés savantes. Les études en simulation démontrent que ce type d’application permet de renforcer la confiance et de réduire la charge mentale des équipes impliquées dans la RCP tout en permettant de limiter significativement les écarts aux recommandations notamment sur le respect des délais concernant l’analyse du rythme et l’administration des traitements.
+RéACTIF assure l’horodatage de l’ensemble des soins et des séquences de RCP nécessaire pour renseigner précisément les dossiers médicaux, les registres à des fins de recherche mais aussi l’évaluation des équipes lors des débriefings.
+L’application RéACTIF répond donc au double objectif d’améliorer la qualité de la RCP et d’optimiser la précision des horaires saisies dans les registres.
+
+Fonctions RCP Adulte :
+•	Minuteurs et compteurs pour le suivi des analyses de rythme cardiaque, des chocs et de l’administration des traitements.
+•	L’application est pensée pour optimiser l’ergonomie d’utilisation et la facilité d’utilisation.
+•	Il est à tout moment possible de saisir un évènement à travers un menu contextuel exhaustif (perfusion, intubation…).
+•	L’application propose un onglet « aide cognitive » pour accéder à des ressources utiles (Algorithmes, causes réversibles, calculateur de poids idéal théorique, réglage respirateur…)
+•	Un métronome sonore à une fréquence ajustable (100 à 120 /min).
+•	Une option d’annulation de la dernière commande saisie avec retour haptique pour éviter les erreurs de manipulation dans l’urgence.
+•	Un mode RACS (reprise d’activité circulatoire spontanée) avec rappel de l’ensemble des horaires, un timer pour l’ECG à 8 minutes et la possibilité de reprendre la RCP en conservant les compteurs.
+•	Enfin un rapport complet et horodaté des actions réalisées durant la RCP avec la possibilité d’exporter le rapport au format PDF.
+Fonction RCP Pédiatrique :
+•	Conçue pour tenir compte des particularités de la RCP pédiatrique en ajustant les posologies au poids.
+•	Calculateur de poids en fonction de l’âge (en mois ou en année)
+•	Calculateur de posologie en fonction du poids pour l’énergie délivrée lors d’un choc (4J/ kg), l’administration d’Adrénaline (0,01 mg/kg) et la Cordarone (5mg/ kg)
+Fonction RCP néonatale :
+•	Un minuteur bloqué à 30 secondes pour l’analyse de la fréquence cardiaque
+•	Un minuteur pour l’adrénaline si indiqué
+•	Un compteur pour le remplissage vasculaire si indiqué
+Paramètres :
+•	Cet onglet permet de modifier les intervalles de temps pour l’administration des traitements entre 3 et 5 minutes comme recommandé.
+•	Mode sombre
+•	Modifier la nature et les délais des alarmes sonores
+Recherche :
+<<<<<<< HEAD
+L’application RéACTIF est soutenue par le registre électronique des arrêts cardiaques (RéAC). L’horodatage de l’ensemble des séquences de la RCP permet d’améliorer la précision des horaires saisies dans les registres à des fins d’analyse.
+
+Confidentialité :
+L’application ne requiert aucun accès à Internet et ne collecte aucune donnée médicale ou personnelle. Elle n’est donc pas soumise au RGPD. Les historiques des RCP sont stockés localement sur l’appareil de l’utilisateur et ne contiennent aucune donnée sensible.
+=======
+L’application RéACTIF est soutenue par le registre électronique des arrêts cardiaques (RéAC). L’horodatage des séquences de RCP permet d’améliorer la précision des horaires saisies dans les registres à des fins d’analyse.
+Confidentialité des données :
+•	Application gratuite et sans publicité ni abonnement
+•	Aucun accès à internet
+•	Aucune collecte de données patient ou personnelle
+•	Stockage de l’historique en locale
+>>>>>>> e2af53d (Feature : change Descriptions)

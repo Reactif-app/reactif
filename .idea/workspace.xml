@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6e590699-3b7c-4063-883e-6c7e5156dc4c" name="Changes" comment="Feature : Versioon change" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_/Users/jacques/PRO/CASSIOPEE/Reactif" value="39kYtkp4V3ybbDMbtjOPr0HpzRn" />
+    </persistenceIdMap>
+  </component>
+  <component name="CopilotUserSelectedModel">
+    <selectedModels>
+      <entry key="inline" value="Gemini 3 Pro (Preview)" />
+      <entry key="chat-panel" value="Gemini 3.1 Pro" />
+      <entry key="agent-panel" value="Gemini 3.1 Pro" />
+    </selectedModels>
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="204" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="develop" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;jackjacques&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:JsonLinesCode/Reactif.git&quot;,
+    &quot;accountId&quot;: &quot;b8750e35-de44-4a91-aabc-5dc439561197&quot;
+  },
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
+    },
+    &quot;owner&quot;: &quot;JsonLinesCode&quot;,
+    &quot;repository&quot;: &quot;Reactif&quot;
+  }
+}</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="39kYtkp4V3ybbDMbtjOPr0HpzRn" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JavaScript Debug.localhost:8081.executor&quot;: &quot;Debug&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;beta-releases&quot;,
+    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jacques/PRO/CASSIOPEE/Reactif/assets/documents/home/partners&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/jacques/PRO/CASSIOPEE/Reactif/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/documents/home/partners" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/audio" />
+      <recent name="$PROJECT_DIR$/components" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="localhost:8081" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8081">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.localhost:8081" />
+        <item itemvalue="JavaScript Debug.localhost:8081" />
+        <item itemvalue="JavaScript Debug.localhost:8081" />
+        <item itemvalue="JavaScript Debug.localhost:8081" />
+        <item itemvalue="JavaScript Debug.localhost:8081" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-WS-253.30387.83" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6e590699-3b7c-4063-883e-6c7e5156dc4c" name="Changes" comment="" />
+      <created>1771241753265</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1771241753265</updated>
+      <workItem from="1771241754731" duration="8162000" />
+      <workItem from="1771251360208" duration="24833000" />
+      <workItem from="1771283254213" duration="5753000" />
+      <workItem from="1771789401516" duration="2545000" />
+      <workItem from="1771859795872" duration="14036000" />
+      <workItem from="1772037205197" duration="795000" />
+      <workItem from="1772290030178" duration="18129000" />
+      <workItem from="1772556669237" duration="25475000" />
+      <workItem from="1773076782460" duration="489000" />
+      <workItem from="1773445370915" duration="85000" />
+      <workItem from="1773445700933" duration="2626000" />
+      <workItem from="1773680210787" duration="2570000" />
+      <workItem from="1773786142502" duration="2928000" />
+      <workItem from="1773819582641" duration="2339000" />
+      <workItem from="1773911148057" duration="7798000" />
+      <workItem from="1774287725042" duration="12816000" />
+      <workItem from="1774372249242" duration="3933000" />
+      <workItem from="1774437708735" duration="379000" />
+      <workItem from="1774455430690" duration="552000" />
+      <workItem from="1774607273399" duration="5011000" />
+      <workItem from="1774735495235" duration="2721000" />
+      <workItem from="1776028468260" duration="634000" />
+      <workItem from="1776194062635" duration="4860000" />
+      <workItem from="1776268540897" duration="83000" />
+      <workItem from="1776625675516" duration="627000" />
+      <workItem from="1776629940673" duration="476000" />
+      <workItem from="1776887090743" duration="8443000" />
+      <workItem from="1777296363968" duration="91000" />
+      <workItem from="1778089388676" duration="1971000" />
+      <workItem from="1778091608745" duration="21042000" />
+      <workItem from="1779043739589" duration="9841000" />
+      <workItem from="1779111352072" duration="1147000" />
+      <workItem from="1779190381486" duration="8990000" />
+      <workItem from="1779885789206" duration="2897000" />
+      <workItem from="1780042280808" duration="823000" />
+      <workItem from="1780249675840" duration="63000" />
+      <workItem from="1780414229197" duration="4217000" />
+      <workItem from="1781091088326" duration="1893000" />
+      <workItem from="1781098027875" duration="5278000" />
+      <workItem from="1781107987795" duration="290000" />
+    </task>
+    <task id="LOCAL-00001" summary="Add the age/weight selector for pediatric reanimation">
+      <option name="closed" value="true" />
+      <created>1771256225020</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1771256225021</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Add the age/weight selector for pediatric reanimation">
+      <option name="closed" value="true" />
+      <created>1771259372562</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1771259372562</updated>
+    </task>
+    <task id="LOCAL-00003" summary="patches &amp; advencements on pediatric">
+      <option name="closed" value="true" />
+      <created>1771260280016</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1771260280016</updated>
+    </task>
+    <task id="LOCAL-00004" summary="patches &amp; advencements on pediatric">
+      <option name="closed" value="true" />
+      <created>1771260741297</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1771260741297</updated>
+    </task>
+    <task id="LOCAL-00005" summary="patches &amp; advencements on pediatric">
+      <option name="closed" value="true" />
+      <created>1771261186044</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1771261186044</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Commit : implemetation of keyboardAvoidingView &amp; calculation of doses for drugs and saving the data">
+      <option name="closed" value="true" />
+      <created>1771275589963</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1771275589963</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Commit : add switch button for months/years selection;&#10;add the saving of the patients data in the sessionStore;&#10;implementation of displayChildData.tsx">
+      <option name="closed" value="true" />
+      <created>1771280272225</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1771280272225</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Commit : add switch button componnent and implementation in childDatas.tsx for months/years selection;&#10;add the saving of the patients data in the sessionStore;&#10;implementation of displayChildData.tsx">
+      <option name="closed" value="true" />
+      <created>1771280408178</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1771280408178</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Add of the Alarm bip">
+      <option name="closed" value="true" />
+      <created>1771283423832</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1771283423833</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Add of the end beep .wav">
+      <option name="closed" value="true" />
+      <created>1771284019140</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1771284019140</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Modify Index : Layout of settings and about buttons">
+      <option name="closed" value="true" />
+      <created>1771322378994</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1771322378994</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Add of theme choice and displaying">
+      <option name="closed" value="true" />
+      <created>1771324362494</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1771324362494</updated>
+    </task>
+    <task id="LOCAL-00013" summary="add light mode on displayChildData.tsx">
+      <option name="closed" value="true" />
+      <created>1771325197412</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1771325197412</updated>
+    </task>
+    <task id="LOCAL-00014" summary="setup the second page for the end of cpr : to standby, say the patient is dead or go back to rcp">
+      <option name="closed" value="true" />
+      <created>1771874157716</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1771874157717</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Feature : Place the Event button on the cpr timer;&#10;Feature : remove the cordarone input in the settings&#10;Feature : change the input of the shocs and adrenaline timers unit to minutes">
+      <option name="closed" value="true" />
+      <created>1772559137515</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1772559137515</updated>
+    </task>
+    <task id="LOCAL-00016" summary="bugFix : start timer and animation when the counter is not null">
+      <option name="closed" value="true" />
+      <created>1772562950900</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1772562950900</updated>
+    </task>
+    <task id="LOCAL-00017" summary="bugFix : fix the audio bug on the ActionProgressBar Beep&#10;bugFix: play sound for the ActionProgressBar.tsx at 15,10,5 sec before end">
+      <option name="closed" value="true" />
+      <created>1773684314163</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1773684314163</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Feature : the button 'Saisie Evenement' Back&#10;Feature : the dark mode on remaining pages">
+      <option name="closed" value="true" />
+      <created>1774374877259</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1774374877259</updated>
+    </task>
+    <task id="LOCAL-00019" summary="bugFix : fix the dispalying of the age if the input is a weight">
+      <option name="closed" value="true" />
+      <created>1774613059395</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1774613059395</updated>
+    </task>
+    <task id="LOCAL-00020" summary="bugFix : fix the dispalying of the age if the input is a weight">
+      <option name="closed" value="true" />
+      <created>1776887365069</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1776887365069</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Feature : change the about section">
+      <option name="closed" value="true" />
+      <created>1776894804787</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1776894804787</updated>
+    </task>
+    <task id="LOCAL-00022" summary="bugFix : remove cordaronne from the settings">
+      <option name="closed" value="true" />
+      <created>1776896694127</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1776896694127</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Modifying the RGPD descriptions; on the 'Fin de RCP' page: removed the setence 'résultat de la réanimation', complete the button RACS with 'Reprise d’activité circulatoire spontanée RACS' in differents sizes, removed the button 'Fin d'intervention'; On the 'RACS' page: remplacing the word 'retour' by 'Reprise d’activité circulatoire spontanée'; On the 'Résumé de RCP' pop-up: changed the title to 'Résumé de la RCP', place counters for each pills on the first section, addding a section for displaying the datas if the current cpr is for a child (age/weigh, energy and medications doses), In 'Actions réalisées' section, add the shocks and analysis stamp which was not displayed, change date and time to hours:minutes:seconds; On the 'Décès' page: displaying the timestamp of the death (end of cpr time)">
+      <option name="closed" value="true" />
+      <created>1778111902673</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1778111902673</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Feature : add the cprTimer and sesstions specs on RACS page">
+      <option name="closed" value="true" />
+      <created>1779049772606</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1779049772609</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Feature : add beeps sounds">
+      <option name="closed" value="true" />
+      <created>1779049788086</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1779049788086</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Feature : rename sounds">
+      <option name="closed" value="true" />
+      <created>1779054041330</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1779054041330</updated>
+    </task>
+    <task id="LOCAL-00027" summary="BugFix : removed circulatoire in cprEndFirstPage.tsx by circulaire">
+      <option name="closed" value="true" />
+      <created>1779117585859</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1779117585859</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Feature : change the names of the links in &quot;ressources.tsx&quot;">
+      <option name="closed" value="true" />
+      <created>1779191536638</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1779191536638</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Feature : add the button 'RCP NEONATALE' and the changes of the cpr page that goes with it">
+      <option name="closed" value="true" />
+      <created>1779194813683</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1779194813683</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Feature : Add partner ReAC">
+      <option name="closed" value="true" />
+      <created>1780423469742</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1780423469743</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Feature : change splash icon">
+      <option name="closed" value="true" />
+      <created>1780486053887</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1780486053887</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Feature : change splash icon">
+      <option name="closed" value="true" />
+      <created>1781093501202</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1781093501202</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Feature : change Descriptions">
+      <option name="closed" value="true" />
+      <created>1781099461293</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1781099461293</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Feature : change Descriptions">
+      <option name="closed" value="true" />
+      <created>1781102162352</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1781102162353</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Feature : splash image change">
+      <option name="closed" value="true" />
+      <created>1781103405981</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1781103405981</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Feature : Change descriptions for the platforms">
+      <option name="closed" value="true" />
+      <created>1781103493675</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1781103493675</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Feature : version bump">
+      <option name="closed" value="true" />
+      <created>1781104983934</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1781104983934</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Feature : change description">
+      <option name="closed" value="true" />
+      <created>1781105151127</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1781105151127</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Feature : change description">
+      <option name="closed" value="true" />
+      <created>1781106192466</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1781106192467</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Feature : Versioon change">
+      <option name="closed" value="true" />
+      <created>1781108085463</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1781108085464</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add of theme choice and displaying" />
+    <MESSAGE value="add light mode on displayChildData.tsx" />
+    <MESSAGE value="setup the second page for the end of cpr : to standby, say the patient is dead or go back to rcp" />
+    <MESSAGE value="Feature : Place the Event button on the cpr timer;&#10;Feature : remove the cordarone input in the settings&#10;Feature : change the input of the shocs and adrenaline timers unit to minutes" />
+    <MESSAGE value="bugFix : start timer and animation when the counter is not null" />
+    <MESSAGE value="bugFix : fix the audio bug on the ActionProgressBar Beep&#10;bugFix: play sound for the ActionProgressBar.tsx at 15,10,5 sec before end" />
+    <MESSAGE value="Feature : the button 'Saisie Evenement' Back&#10;Feature : the dark mode on remaining pages" />
+    <MESSAGE value="bugFix : fix the dispalying of the age if the input is a weight" />
+    <MESSAGE value="Feature : change the about section" />
+    <MESSAGE value="bugFix : remove cordaronne from the settings" />
+    <MESSAGE value="Modifying the RGPD descriptions; on the 'Fin de RCP' page: removed the setence 'résultat de la réanimation', complete the button RACS with 'Reprise d’activité circulatoire spontanée RACS' in differents sizes, removed the button 'Fin d'intervention'; On the 'RACS' page: remplacing the word 'retour' by 'Reprise d’activité circulatoire spontanée'; On the 'Résumé de RCP' pop-up: changed the title to 'Résumé de la RCP', place counters for each pills on the first section, addding a section for displaying the datas if the current cpr is for a child (age/weigh, energy and medications doses), In 'Actions réalisées' section, add the shocks and analysis stamp which was not displayed, change date and time to hours:minutes:seconds; On the 'Décès' page: displaying the timestamp of the death (end of cpr time)" />
+    <MESSAGE value="Feature : add the cprTimer and sesstions specs on RACS page" />
+    <MESSAGE value="Feature : add beeps sounds" />
+    <MESSAGE value="Feature : rename sounds" />
+    <MESSAGE value="BugFix : removed circulatoire in cprEndFirstPage.tsx by circulaire" />
+    <MESSAGE value="Feature : change the names of the links in &quot;ressources.tsx&quot;" />
+    <MESSAGE value="Feature : add the button 'RCP NEONATALE' and the changes of the cpr page that goes with it" />
+    <MESSAGE value="Feature : Add partner ReAC" />
+    <MESSAGE value="Feature : change splash icon" />
+    <MESSAGE value="Feature : change Descriptions" />
+    <MESSAGE value="Feature : splash image change" />
+    <MESSAGE value="Feature : Change descriptions for the platforms" />
+    <MESSAGE value="Feature : version bump" />
+    <MESSAGE value="Feature : change description" />
+    <MESSAGE value="Feature : Versioon change" />
+    <option name="LAST_COMMIT_MESSAGE" value="Feature : Versioon change" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>

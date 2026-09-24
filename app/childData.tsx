@@ -4,9 +4,9 @@ import { sessionStore } from "@/store/sessionStore";
 import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
-  Alert,
   KeyboardAvoidingView,
   LayoutAnimation,
+  Modal,
   Platform,
   ScrollView,
   StyleSheet,
@@ -14,7 +14,7 @@ import {
   TextInput,
   TouchableOpacity,
   UIManager,
-  View,
+  View
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -53,6 +53,8 @@ export default function ChildData() {
   const aideButtonTextStyle = { color: isDark ? "#fff" : "#007BFF" };
 
   const [inputMode, setInputMode] = useState<"age" | "weight" | null>(null);
+  const [validationPopupVisible, setValidationPopupVisible] = useState(false);
+  const [validationPopupMessage, setValidationPopupMessage] = useState("");
 
   {
     /* Animation for the expansion of the content */
@@ -105,7 +107,7 @@ export default function ChildData() {
     if (isNaN(age) || age < 0 || !mode) return null;
 
     const strategies: Record<AgeMode, () => number | null> = {
-      months: () => (age >= 12 ? 10 : (MONTHLY_WEIGHTS[age] ?? null)),
+      months: () => (age < 12 ? (MONTHLY_WEIGHTS[age] ?? null) : null),
       years: () => {
         if (age >= 1 && age < 5) {
           return (age + 4) * 2;
@@ -143,26 +145,38 @@ export default function ChildData() {
     finalWeight = null;
   }
 
-  const adrenalineDose = finalWeight ? (0.01 * finalWeight).toFixed(2) : null;
+  const adrenalineDose = finalWeight ? ( 0.01 * finalWeight).toFixed(2) : null;
   const cordaroneDose = finalWeight ? (5 * finalWeight).toFixed(1) : null;
   const energyDose = finalWeight ? (4 * finalWeight).toFixed(0) : null;
 
   const handleValidation = () => {
     if (inputMode === "age" && !valeurTemp) {
-      Alert.alert(t("childData.invalidAgeTitle"), t("childData.invalidAgeMessage"));
+      setValidationPopupMessage(t("childData.invalidAgeMessage"));
+      setValidationPopupVisible(true);
       return;
     }
     if (inputMode === "weight" && !weightInput) {
-      Alert.alert(t("childData.invalidAgeTitle"), t("childData.invalidWeightMessage"));
+      setValidationPopupMessage(t("childData.invalidWeightMessage"));
+      setValidationPopupVisible(true);
       return;
     }
     if (!inputMode) {
-      Alert.alert(
-        t("childData.invalidAgeTitle"),
-        t("childData.invalidInputMessage"),
-      );
+      setValidationPopupMessage(t("childData.invalidInputMessage"));
+      setValidationPopupVisible(true);
       return;
     }
+
+    if (inputMode === "age" && mode === "months" && parsedAge >= 12) {
+      setValidationPopupMessage(t("childData.invalidAgeOver12MonthsMessage"));
+      setValidationPopupVisible(true);
+      return;
+    }
+
+    const isAdultAge = inputMode === "age" && mode === "years" && parsedAge > 12;
+    const savedAdrenalineDose = isAdultAge ? "1" : adrenalineDose ?? undefined;
+    const savedCordaroneDose = isAdultAge ? "300" : cordaroneDose ?? undefined;
+    const savedEnergyDose = isAdultAge ? undefined : energyDose ?? undefined;
+    const savedWeight = isAdultAge ? undefined : finalWeight ?? 0;
 
     const ageVal = parsedAge || 0;
     const currentMode = mode || "years"; // Default if only weight is entered, though logically ageMode might not matter if weight is manual. Let's keep it simple.
@@ -172,10 +186,10 @@ export default function ChildData() {
       inputMode: inputMode,
       ageMode: currentMode,
       ageValue: ageVal,
-      weight: finalWeight ?? 0,
-      adrenalineDose: adrenalineDose ?? undefined,
-      cordaroneDose: cordaroneDose ?? undefined,
-      energyDose: energyDose ?? undefined,
+      ...(savedWeight !== undefined ? { weight: savedWeight } : {}),
+      adrenalineDose: savedAdrenalineDose,
+      cordaroneDose: savedCordaroneDose,
+      ...(savedEnergyDose !== undefined ? { energyDose: savedEnergyDose } : {}),
     });
 
     router.push("/displayChildData");
@@ -341,6 +355,39 @@ export default function ChildData() {
             </TouchableOpacity>
           </View>
         )}
+
+        <Modal
+          transparent
+          visible={validationPopupVisible}
+          animationType="fade"
+          onRequestClose={() => setValidationPopupVisible(false)}
+        >
+          <View style={styles.popupOverlay}>
+            <TouchableOpacity
+              style={styles.popupBackdrop}
+              activeOpacity={1}
+              onPress={() => setValidationPopupVisible(false)}
+            />
+            <View
+              style={[
+                styles.popupCard,
+                {
+                  backgroundColor: isDark ? "#1f1111" : "#fff",
+                  borderColor: "#f5282895",
+                },
+              ]}
+            >
+              <Text style={styles.popupTitle}>{t("childData.invalidAgeTitle")}</Text>
+              <Text style={styles.popupMessage}>{validationPopupMessage}</Text>
+              <TouchableOpacity
+                style={styles.popupButton}
+                onPress={() => setValidationPopupVisible(false)}
+              >
+                <Text style={styles.popupButtonText}>OK</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
@@ -553,5 +600,55 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: "#333",
     alignItems: "center",
+  },
+  popupOverlay: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 24,
+  },
+  popupBackdrop: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0,0,0,0.45)",
+  },
+  popupCard: {
+    width: "100%",
+    maxWidth: 420,
+    borderRadius: 16,
+    borderWidth: 2,
+    paddingVertical: 22,
+    paddingHorizontal: 20,
+    alignItems: "center",
+    elevation: 6,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 10,
+  },
+  popupTitle: {
+    color: "#f5282895",
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 10,
+  },
+  popupMessage: {
+    color: "#f5282895",
+    fontSize: 16,
+    textAlign: "center",
+    lineHeight: 22,
+  },
+  popupButton: {
+    marginTop: 18,
+    backgroundColor: "#f5282895",
+    paddingHorizontal: 22,
+    paddingVertical: 10,
+    borderRadius: 10,
+  },
+  popupButtonText: {
+    color: "#fff",
+    fontSize: 15,
+    fontWeight: "bold",
+    textTransform: "uppercase",
   },
 });

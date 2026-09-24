@@ -121,6 +121,10 @@ const de = {
     electricShockEnergy: "Elektroschock (Energie):",
     invalidAgeTitle: "Fehler",
     invalidAgeMessage: "Bitte ein Alter eingeben.",
+    invalidAgeOver12MonthsMessage:
+      "Für Kinder über 12 Monate bitte das Alter in Jahren angeben.",
+    invalidAgeOver12YearsMessage:
+      "Für Kinder über 12 Jahre bitte eine normale Reanimation durchführen.",
     invalidWeightMessage: "Bitte ein Gewicht eingeben.",
     invalidInputMessage: "Bitte einen Wert auswählen und eingeben (Alter oder Gewicht).",
   },

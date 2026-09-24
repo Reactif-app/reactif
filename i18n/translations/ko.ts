@@ -121,6 +121,10 @@ const ko = {
     electricShockEnergy: "전기 충격(에너지):",
     invalidAgeTitle: "오류",
     invalidAgeMessage: "나이를 입력하세요.",
+    invalidAgeOver12MonthsMessage:
+      "12개월이 넘는 경우 나이를 연 단위로 입력하세요.",
+      invalidAgeOver12YearsMessage:
+      "12세 이상 아동의 경우 일반 CPR을 수행하세요.",
     invalidWeightMessage: "체중을 입력하세요.",
     invalidInputMessage: "값을 선택하고 입력하세요(나이 또는 체중).",
   },
