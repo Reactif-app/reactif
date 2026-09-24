@@ -17,7 +17,8 @@
     "@react-native-community/slider": "5.2.0",
     "@react-native-masked-view/masked-view": "0.3.2",
     "expo": "^57.0.25",
-    "expo-av": "~16.0.8",
+    "expo-asset": "~57.0.18",
+    "expo-audio": "~57.0.5",
     "expo-clipboard": "~57.0.2",
     "expo-constants": "~57.0.19",
     "expo-font": "~57.0.4",
@@ -67,8 +68,7 @@
     "doctor": {
       "reactNativeDirectoryCheck": {
         "exclude": [
-          "react-native-background-timer",
-          "expo-av"
+          "react-native-background-timer"
         ]
       }
     }

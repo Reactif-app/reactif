@@ -1,4 +1,8 @@
-import { Audio, InterruptionModeAndroid, InterruptionModeIOS } from "expo-av";
+import {
+  AudioPlayer,
+  createAudioPlayer,
+  setAudioModeAsync,
+} from "expo-audio";
 
 import {
   DEFAULT_SOUND_CHOICES,
@@ -25,7 +29,7 @@ const SOUND_FILES: Record<SoundAssetName, any> = {
 };
 
 export class SoundController {
-  private sounds: Partial<Record<SoundSlot, Audio.Sound | null>> = {};
+  private sounds: Partial<Record<SoundSlot, AudioPlayer | null>> = {};
   private choices: Record<SoundSlot, SoundAssetName> = {
     ...DEFAULT_SOUND_CHOICES,
   };
@@ -43,15 +47,15 @@ export class SoundController {
 
   private async loadSlot(slot: SoundSlot) {
     try {
-      await this.sounds[slot]?.unloadAsync();
+      this.sounds[slot]?.remove();
     } catch {
-      // ignore unload errors
+      // ignore remove errors
     }
 
     try {
-      const result = await Audio.Sound.createAsync(this.getSource(slot));
-      await result.sound.setVolumeAsync(this.volume);
-      this.sounds[slot] = result.sound;
+      const player = createAudioPlayer(this.getSource(slot));
+      player.volume = this.volume;
+      this.sounds[slot] = player;
     } catch {
       this.sounds[slot] = null;
     }
@@ -61,14 +65,12 @@ export class SoundController {
     if (this.initialized) return;
     this.choices = await getSoundChoices();
 
-    await Audio.setAudioModeAsync({
-      allowsRecordingIOS: false,
-      staysActiveInBackground: true,
-      interruptionModeIOS: InterruptionModeIOS.DuckOthers,
-      playsInSilentModeIOS: true,
-      shouldDuckAndroid: false,
-      interruptionModeAndroid: InterruptionModeAndroid.DuckOthers,
-      playThroughEarpieceAndroid: false,
+    await setAudioModeAsync({
+      allowsRecording: false,
+      shouldPlayInBackground: true,
+      playsInSilentMode: true,
+      interruptionMode: "duckOthers",
+      shouldRouteThroughEarpiece: false,
     });
 
     for (const slot of this.slots) {
@@ -83,26 +85,24 @@ export class SoundController {
     const sound = this.sounds[slot];
     try {
       if (!sound) return;
-      await sound.setVolumeAsync(this.volume);
-      await sound.replayAsync();
+      sound.volume = this.volume;
+      await sound.seekTo(0);
+      sound.play();
     } catch {
       // ignore playback errors
     }
   }
 
+  private previewPlayer: AudioPlayer | null = null;
+
   async playAsset(assetName: SoundAssetName) {
     if (!this.initialized) await this.init();
 
     try {
-      const result = await Audio.Sound.createAsync(SOUND_FILES[assetName], {
-        shouldPlay: true,
-        volume: this.volume,
-      });
-      result.sound.setOnPlaybackStatusUpdate((status) => {
-        if (status.isLoaded && status.didJustFinish) {
-          result.sound.unloadAsync().catch(() => {});
-        }
-      });
+      this.previewPlayer?.remove();
+      this.previewPlayer = createAudioPlayer(SOUND_FILES[assetName]);
+      this.previewPlayer.volume = this.volume;
+      this.previewPlayer.play();
     } catch {
       // ignore preview errors
     }
@@ -117,7 +117,10 @@ export class SoundController {
 
     for (const slot of this.slots) {
       try {
-        await this.sounds[slot]?.setVolumeAsync(this.volume);
+        const sound = this.sounds[slot];
+        if (sound) {
+          sound.volume = this.volume;
+        }
       } catch {
         // ignore volume update errors
       }
@@ -176,9 +179,12 @@ export class SoundController {
   }
 
   async stopAll() {
+    try {
+      this.previewPlayer?.pause();
+    } catch {}
     for (const slot of this.slots) {
       try {
-        await this.sounds[slot]?.stopAsync();
+        this.sounds[slot]?.pause();
       } catch {
         // ignore stop errors
       }
@@ -186,9 +192,14 @@ export class SoundController {
   }
 
   async dispose() {
+    try {
+      this.previewPlayer?.remove();
+    } catch {}
+    this.previewPlayer = null;
+
     for (const slot of this.slots) {
       try {
-        await this.sounds[slot]?.unloadAsync();
+        this.sounds[slot]?.remove();
       } catch {}
       this.sounds[slot] = null;
     }

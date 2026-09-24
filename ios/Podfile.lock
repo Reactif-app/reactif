@@ -1,7 +1,4 @@
 PODS:
-  - EXAV (16.0.8):
-    - ExpoModulesCore
-    - ReactCommon/turbomodule/core
   - EXConstants (57.0.19):
     - ExpoModulesCore
   - Expo (57.0.25):
@@ -31,6 +28,8 @@ PODS:
     - ReactNativeDependencies
     - Yoga
   - ExpoAsset (57.0.18):
+    - ExpoModulesCore
+  - ExpoAudio (57.0.5):
     - ExpoModulesCore
   - ExpoClipboard (57.0.2):
     - ExpoModulesCore
@@ -2456,10 +2455,10 @@ PODS:
   - Yoga (0.0.0)
 
 DEPENDENCIES:
-  - EXAV (from `../node_modules/expo-av/ios`)
   - EXConstants (from `../node_modules/expo-constants/ios`)
   - Expo (from `../node_modules/expo`)
   - ExpoAsset (from `../node_modules/expo-asset/ios`)
+  - ExpoAudio (from `../node_modules/expo-audio/ios`)
   - ExpoClipboard (from `../node_modules/expo-clipboard/ios`)
   - "ExpoDomWebView (from `../node_modules/@expo/dom-webview/ios`)"
   - ExpoFileSystem (from `../node_modules/expo-file-system/ios`)
@@ -2583,14 +2582,14 @@ SPEC REPOS:
     - SDWebImageWebPCoder
 
 EXTERNAL SOURCES:
-  EXAV:
-    :path: "../node_modules/expo-av/ios"
   EXConstants:
     :path: "../node_modules/expo-constants/ios"
   Expo:
     :path: "../node_modules/expo"
   ExpoAsset:
     :path: "../node_modules/expo-asset/ios"
+  ExpoAudio:
+    :path: "../node_modules/expo-audio/ios"
   ExpoClipboard:
     :path: "../node_modules/expo-clipboard/ios"
   ExpoDomWebView:
@@ -2814,10 +2813,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  EXAV: b60fcf142fae6684d295bc28cd7cfcb3335570ea
   EXConstants: 2dc4473aff5574eccaccb9f3eefe6d95247e5d38
   Expo: 467b8a6845b753adca743c1d2e3d0b93af904db9
   ExpoAsset: a917b756b2e4fe12cef1ac3bca5fd849ddb2b919
+  ExpoAudio: edc9230b788be6f65238a53907d5c176b57a7ce0
   ExpoClipboard: 15b8cc88075d7c50af165ed8fca0a76915903bba
   ExpoDomWebView: beaec034e51bd028428b98bb1f2633ab79c6d095
   ExpoFileSystem: 28778f942725170102f7c6cf4dee05a526ddacd0
