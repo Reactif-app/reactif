@@ -374,7 +374,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   layer: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
     justifyContent: "center",
     borderTopLeftRadius: 28,
     borderBottomLeftRadius: 28,

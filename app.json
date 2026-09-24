@@ -7,7 +7,6 @@
     "icon": "./assets/icons/ios-light.png",
     "scheme": "reactif",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "fr.reactif",
@@ -69,25 +68,8 @@
         "android.permission.READ_MEDIA_VIDEO",
         "android.permission.READ_MEDIA_AUDIO"
       ],
-      "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "package": "fr.reactif"
-    },
-    "slash": {
-      "ios": {
-        "supportsTablet": true,
-        "slashIcon": {
-          "dark": "./assets/icons/adaptive-icon.png",
-          "light": "./assets/icons/adaptive-icon.png",
-          "tinted": "./assets/icons/adaptive-icon.png"
-        }
-      },
-      "android": {
-        "adaptiveIcon": {
-          "foregroundImage": "./assets/icons/adaptive-icon.png",
-          "backgroundColor": "#FFFFFF"
-        }
-      }
     },
     "web": {
       "output": "static",
@@ -108,7 +90,10 @@
         }
       ],
       "expo-font",
-      "expo-web-browser"
+      "expo-web-browser",
+      "expo-image",
+      "expo-sharing",
+      "expo-status-bar"
     ],
     "experiments": {
       "typedRoutes": true,

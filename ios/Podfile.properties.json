@@ -1,5 +1,9 @@
 {
   "expo.jsEngine": "hermes",
   "EX_DEV_CLIENT_NETWORK_INSPECTOR": "true",
-  "newArchEnabled": "true"
+  "newArchEnabled": "true",
+  "expo.inlineModules.watchedDirectories": "[]",
+  "expo.inlineModules.xcodeProjectTargets": "{\"mainTarget\":\"Reactif\",\"targets\":[]}",
+  "expo-image.disable-libdav1d": "false",
+  "ios.deploymentTarget": "16.4"
 }
