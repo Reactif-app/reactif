@@ -58,6 +58,12 @@ export default function Index() {
     router.push("/cpr");
   }
 
+  const mainPartner = {
+    name: "SFMU",
+    url: "https://www.sfmu.org/",
+    icon: require("@/assets/images/logo_sfmu_thd.svg"),
+  };
+
   const partners = [
     {
       url: "https://www.chsf.fr/portail/offre-de-soins-18-25.html?args=Y29tcF9pZD00NyZhY3Rpb249ZmljaGVfc2VydmljZSZpZD0xMDMmY29tcG9uZW50PSZtb2R1bGU9Jnw%3D&offre_soin_service_id=103",
@@ -104,17 +110,36 @@ export default function Index() {
         }}
       >
         <View style={{ width: "100%", alignItems: "center" }}>
-          <View style={{ height: 20 }} />
-          <View style={styles.partnersRow}>
-            {partners.map((partner, index) => (
-              <TouchableOpacity
-                key={`${partner.url}-${index}`}
-                style={styles.partnerLink}
-                onPress={() => handleOpenPartner(partner.url)}
-              >
-                <Image source={partner.icon} style={styles.partnerLogo} />
-              </TouchableOpacity>
-            ))}
+          <View style={styles.partnersContainer}>
+            <TouchableOpacity
+              style={styles.mainPartnerLink}
+              onPress={() => handleOpenPartner(mainPartner.url)}
+              activeOpacity={0.8}
+              accessibilityRole="link"
+              accessibilityLabel="SFMU"
+            >
+              <Image
+                source={mainPartner.icon}
+                style={styles.mainPartnerLogo}
+                contentFit="contain"
+              />
+            </TouchableOpacity>
+            <View style={styles.secondaryPartnersRow}>
+              {partners.map((partner, index) => (
+                <TouchableOpacity
+                  key={`${partner.url}-${index}`}
+                  style={styles.partnerLink}
+                  onPress={() => handleOpenPartner(partner.url)}
+                  activeOpacity={0.8}
+                >
+                  <Image
+                    source={partner.icon}
+                    style={styles.partnerLogo}
+                    contentFit="contain"
+                  />
+                </TouchableOpacity>
+              ))}
+            </View>
           </View>
           <TouchableOpacity
             style={[styles.menuButton, outlineButtonStyle]}
@@ -304,25 +329,45 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     textAlign: "center",
   },
-  partnersRow: {
+  partnersContainer: {
     width: "100%",
     maxWidth: 400,
+    alignItems: "center",
+    marginBottom: 16,
+  },
+  mainPartnerLink: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fff",
+    borderRadius: 12,
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    marginBottom: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  mainPartnerLogo: {
+    width: 140,
+    height: 80,
+  },
+  secondaryPartnersRow: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "flex-start",
-    marginBottom: 24,
-    gap: 12,
+    justifyContent: "center",
+    gap: 24,
   },
   partnerLink: {
-    width: 96,
-    height: 96,
+    width: 76,
+    height: 64,
     alignItems: "center",
     justifyContent: "center",
   },
   partnerLogo: {
-    width: 88,
-    height: 88,
-    resizeMode: "contain",
+    width: 68,
+    height: 56,
   },
   buttonHistoryText: {
     color: "#007BFF",
