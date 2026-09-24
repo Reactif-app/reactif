@@ -345,20 +345,21 @@ const styles = StyleSheet.create({
     height: 115,
   },
   secondaryPartnersRow: {
+    width: "100%",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
-    gap: 32,
+    justifyContent: "space-between",
+    paddingHorizontal: 12,
   },
   partnerLink: {
-    width: 84,
-    height: 84,
+    width: 98,
+    height: 98,
     alignItems: "center",
     justifyContent: "center",
   },
   partnerLogo: {
-    width: 84,
-    height: 84,
+    width: 98,
+    height: 98,
   },
   buttonHistoryText: {
     color: "#007BFF",
