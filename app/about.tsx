@@ -135,7 +135,6 @@ export default function About() {
             style={[styles.paragraph, { color: isDark ? "#d1d5db" : "#333" }]}
           >
             Développement  : Josselin ROBERT, Jacques ANGLEYS,
-            Othmane QAIBES, Lina ZAROUAL,
             Télécom SudParis dans le cadre du programme Cassiopée.
           </Text>
         </View>
