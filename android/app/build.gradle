@@ -94,9 +94,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
   
-    namespace "fr.reactif"
+    namespace 'fr.reactif'
     defaultConfig {
-        applicationId "fr.reactif"
+        applicationId 'fr.reactif'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode androidVersionCode

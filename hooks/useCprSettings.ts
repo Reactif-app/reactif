@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { soundController } from "@/controllers/SoundController";
 
@@ -45,11 +45,7 @@ export function useCprSettings(): CprSettings {
   const [previewMaxVolume, setPreviewMaxVolumeState] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadSettings();
-  }, []);
-
-  const loadSettings = async () => {
+  const loadSettings = useCallback(async () => {
     try {
       const [shock, adrenaline, warning, endButtonMode, preview] =
         await Promise.all([
@@ -72,9 +68,13 @@ export function useCprSettings(): CprSettings {
     } catch (e) {
       console.error("Failed to load settings", e);
     } finally {
-      setLoading(false);
+      queueMicrotask(() => setLoading(false));
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    void loadSettings();
+  }, [loadSettings]);
 
   const setEndButtonShortTap = async (enabled: boolean) => {
     try {

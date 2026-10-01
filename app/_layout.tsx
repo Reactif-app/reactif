@@ -78,8 +78,6 @@ export default function RootLayout() {
       <GestureHandlerRootView style={{ flex: 1 }}>
         <StatusBar
           style={theme === "dark" ? "light" : "dark"}
-          backgroundColor={theme === "dark" ? "#353636" : "#ffffff"}
-          translucent={false}
         />
         <Stack>
           <Stack.Screen name="index" options={{ headerShown: false }} />

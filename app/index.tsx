@@ -1,12 +1,13 @@
 import { useI18n } from "@/hooks/useI18n";
 import { sessionStore } from "@/store/sessionStore";
 import Feather from "@expo/vector-icons/Feather";
-import { useFocusEffect } from "@react-navigation/native";
+import { useFocusEffect } from "expo-router/react-navigation";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import React, { useCallback, useEffect, useState } from "react";
 import {
   Linking,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -58,6 +59,12 @@ export default function Index() {
     router.push("/cpr");
   }
 
+  const mainPartner = {
+    name: "SFMU",
+    url: "https://www.sfmu.org/",
+    icon: require("@/assets/images/logo_sfmu_thd.svg"),
+  };
+
   const partners = [
     {
       url: "https://www.chsf.fr/portail/offre-de-soins-18-25.html?args=Y29tcF9pZD00NyZhY3Rpb249ZmljaGVfc2VydmljZSZpZD0xMDMmY29tcG9uZW50PSZtb2R1bGU9Jnw%3D&offre_soin_service_id=103",
@@ -78,14 +85,16 @@ export default function Index() {
     } catch {}
   };
   return (
-    <View
+    <ScrollView
       key={`home-${locale}`}
       id="coucou"
-      style={[
-        styles.container,
-        bgStyle,
+      style={[styles.container, bgStyle]}
+      contentContainerStyle={[
+        styles.scrollContent,
         { paddingBottom: Math.max(20, insets.bottom + 12) },
       ]}
+      showsVerticalScrollIndicator={false}
+      bounces={true}
     >
       <Image
         source={
@@ -97,30 +106,54 @@ export default function Index() {
       />
       <View
         style={{
-          gap: 30,
+          gap: 20,
           justifyContent: "center",
           width: "100%",
           alignItems: "center",
         }}
       >
         <View style={{ width: "100%", alignItems: "center" }}>
-          <View style={{ height: 20 }} />
-          <View style={styles.partnersRow}>
-            {partners.map((partner, index) => (
-              <TouchableOpacity
-                key={`${partner.url}-${index}`}
-                style={styles.partnerLink}
-                onPress={() => handleOpenPartner(partner.url)}
-              >
-                <Image source={partner.icon} style={styles.partnerLogo} />
-              </TouchableOpacity>
-            ))}
+          <View style={styles.partnersContainer}>
+            <TouchableOpacity
+              style={styles.mainPartnerLink}
+              onPress={() => handleOpenPartner(mainPartner.url)}
+              activeOpacity={0.8}
+              accessibilityRole="link"
+              accessibilityLabel="SFMU"
+            >
+              <Image
+                source={mainPartner.icon}
+                style={styles.mainPartnerLogo}
+                contentFit="contain"
+              />
+            </TouchableOpacity>
+            <View style={styles.secondaryPartnersRow}>
+              {partners.map((partner, index) => (
+                <TouchableOpacity
+                  key={`${partner.url}-${index}`}
+                  style={styles.partnerLink}
+                  onPress={() => handleOpenPartner(partner.url)}
+                  activeOpacity={0.8}
+                >
+                  <Image
+                    source={partner.icon}
+                    style={styles.partnerLogo}
+                    contentFit="contain"
+                  />
+                </TouchableOpacity>
+              ))}
+            </View>
           </View>
           <TouchableOpacity
             style={[styles.menuButton, outlineButtonStyle]}
             onPress={startAdultCpr}
           >
-            <Text style={[styles.menuButtonText, outlineTextStyle]}>
+            <Text
+              style={[styles.menuButtonText, outlineTextStyle]}
+              adjustsFontSizeToFit
+              numberOfLines={2}
+              maxFontSizeMultiplier={1.25}
+            >
               {t("home.adultCpr")}
             </Text>
           </TouchableOpacity>
@@ -137,11 +170,16 @@ export default function Index() {
               style={[
                 styles.menuButton,
                 outlineButtonStyle,
-                { flex: 1, width: "auto", paddingHorizontal: 5 },
+                { flex: 1, width: "auto", paddingHorizontal: 6, paddingVertical: 10, minHeight: 58 },
               ]}
               onPress={startPediatricCpr}
             >
-              <Text style={[styles.menuSmallButtonText, outlineTextStyle]}>
+              <Text
+                style={[styles.menuSmallButtonText, outlineTextStyle]}
+                adjustsFontSizeToFit
+                numberOfLines={2}
+                maxFontSizeMultiplier={1.2}
+              >
                 {t("home.pediatricCpr")}
               </Text>
             </TouchableOpacity>
@@ -149,11 +187,16 @@ export default function Index() {
               style={[
                 styles.menuButton,
                 outlineButtonStyle,
-                { flex: 1, width: "auto", paddingHorizontal: 5 },
+                { flex: 1, width: "auto", paddingHorizontal: 6, paddingVertical: 10, minHeight: 58 },
               ]}
               onPress={startNeonatalCpr}
             >
-              <Text style={[styles.menuSmallButtonText, outlineTextStyle]}>
+              <Text
+                style={[styles.menuSmallButtonText, outlineTextStyle]}
+                adjustsFontSizeToFit
+                numberOfLines={2}
+                maxFontSizeMultiplier={1.2}
+              >
                 {t("home.neonatalCpr")}
               </Text>
             </TouchableOpacity>
@@ -168,7 +211,12 @@ export default function Index() {
             ]}
             onPress={startAideCognitive}
           >
-            <Text style={[styles.buttonHistoryText, outlineTextStyle]}>
+            <Text
+              style={[styles.buttonHistoryText, outlineTextStyle]}
+              adjustsFontSizeToFit
+              numberOfLines={2}
+              maxFontSizeMultiplier={1.25}
+            >
               {t("home.cognitiveAids")}
             </Text>
           </TouchableOpacity>
@@ -181,7 +229,12 @@ export default function Index() {
               ]}
               onPress={() => router.push("/history")}
             >
-              <Text style={[styles.buttonHistoryText, outlineTextStyle]}>
+              <Text
+                style={[styles.buttonHistoryText, outlineTextStyle]}
+                adjustsFontSizeToFit
+                numberOfLines={2}
+                maxFontSizeMultiplier={1.25}
+              >
                 {t("home.history")}
               </Text>
             </TouchableOpacity>
@@ -206,31 +259,35 @@ export default function Index() {
           </View>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   logo: {
-    width: 300,
-    height: 200,
-    marginBottom: 10,
+    width: 270,
+    height: 155,
+    maxHeight: 160,
+    marginBottom: 6,
     resizeMode: "contain",
   },
   menuButton: {
     backgroundColor: "#fff",
     borderColor: "#007BFF",
     borderWidth: 2,
-    paddingVertical: 18,
+    paddingVertical: 14,
+    paddingHorizontal: 12,
     borderRadius: 12,
-    marginBottom: 20,
+    marginBottom: 14,
     width: "100%",
     maxWidth: 400,
+    minHeight: 56,
     alignItems: "center",
     justifyContent: "center",
   },
   buttonHistory: {
-    paddingVertical: 18,
+    paddingVertical: 12,
+    paddingHorizontal: 12,
     backgroundColor: "#fff",
     borderColor: "#007BFF",
     borderWidth: 2,
@@ -238,7 +295,9 @@ const styles = StyleSheet.create({
     marginBottom: 0,
     width: "100%",
     maxWidth: 400,
+    minHeight: 56,
     alignItems: "center",
+    justifyContent: "center",
   },
   buttonRow: {
     flexDirection: "row",
@@ -252,24 +311,24 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
-    marginBottom: 20,
+    marginBottom: 14,
   },
   bottomHistoryButton: {
     flex: 1,
-    height: 62,
+    minHeight: 56,
     justifyContent: "center",
   },
   bottomAideButton: {
     width: "100%",
     maxWidth: 400,
-    marginBottom: 12,
-    height: 62,
+    marginBottom: 10,
+    minHeight: 56,
     justifyContent: "center",
   },
   bottomSettingsButton: {
-    width: 74,
-    maxWidth: 74,
-    height: 62,
+    width: 68,
+    maxWidth: 68,
+    minHeight: 56,
     justifyContent: "center",
     marginBottom: 0,
     marginLeft: "auto",
@@ -279,9 +338,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderColor: "#007BFF",
     borderWidth: 2,
-    paddingVertical: 18,
+    paddingVertical: 14,
     borderRadius: 12,
-    marginBottom: 20,
+    marginBottom: 14,
     width: "100%",
     maxWidth: 160,
     alignItems: "center",
@@ -293,44 +352,56 @@ const styles = StyleSheet.create({
   },
   menuButtonText: {
     color: "#007BFF",
-    fontSize: 22,
-    fontWeight: "bold",
-    textTransform: "uppercase",
-  },
-  menuSmallButtonText: {
-    color: "#007BFF",
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: "bold",
     textTransform: "uppercase",
     textAlign: "center",
   },
-  partnersRow: {
+  menuSmallButtonText: {
+    color: "#007BFF",
+    fontSize: 16,
+    fontWeight: "bold",
+    textTransform: "uppercase",
+    textAlign: "center",
+  },
+  partnersContainer: {
     width: "100%",
     maxWidth: 400,
+    alignItems: "center",
+    marginBottom: 12,
+  },
+  mainPartnerLink: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 6,
+  },
+  mainPartnerLogo: {
+    width: 240,
+    height: 145,
+  },
+  secondaryPartnersRow: {
+    width: "100%",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "flex-start",
-    marginBottom: 24,
-    gap: 12,
+    justifyContent: "space-between",
+    paddingHorizontal: 12,
   },
   partnerLink: {
-    width: 96,
-    height: 96,
+    width: 92,
+    height: 92,
     alignItems: "center",
     justifyContent: "center",
   },
   partnerLogo: {
-    width: 88,
-    height: 88,
-    resizeMode: "contain",
+    width: 92,
+    height: 92,
   },
   buttonHistoryText: {
     color: "#007BFF",
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: "bold",
     textTransform: "uppercase",
-    lineHeight: 22,
-    includeFontPadding: false,
+    textAlign: "center",
   },
   mainButtons: {
     width: "100%",
@@ -341,10 +412,12 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    height: "100%",
-    paddingTop: 10,
-    padding: 20,
     backgroundColor: "#25292e",
+  },
+  scrollContent: {
+    flexGrow: 1,
+    paddingTop: 10,
+    paddingHorizontal: 20,
     alignItems: "center",
     justifyContent: "space-between",
   },
