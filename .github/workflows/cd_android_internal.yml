@@ -195,9 +195,9 @@ jobs:
 
           BASE_SHA="${{ github.event.before }}"
           if [ -n "$BASE_SHA" ] && [ "$BASE_SHA" != "0000000000000000000000000000000000000000" ]; then
-            CHANGELOG=$(git log --no-merges --pretty=format:'- %s (%h)' "$BASE_SHA"..HEAD)
+            CHANGELOG=$(git log --no-merges --pretty=format:'- %s' "$BASE_SHA"..HEAD)
           else
-            CHANGELOG=$(git log --no-merges -n 20 --pretty=format:'- %s (%h)' HEAD)
+            CHANGELOG=$(git log --no-merges -n 20 --pretty=format:'- %s' HEAD)
           fi
 
           if [ -z "$CHANGELOG" ]; then
@@ -214,12 +214,26 @@ jobs:
             echo "$CHANGELOG"
           } > .ci/release-notes.txt
 
+          printf '%s' "$CHANGELOG" > .ci/play-release-notes.txt
+          node -e '
+            const fs = require("fs");
+            const path = process.argv[1];
+            const notes = fs.readFileSync(path, "utf8");
+            let playNotes = "";
+            for (const line of notes.split("\n")) {
+              const next = playNotes ? playNotes + "\n" + line : line;
+              if (next.length > 500) break;
+              playNotes = next;
+            }
+            fs.writeFileSync(path, playNotes || notes.slice(0, 500));
+          ' .ci/play-release-notes.txt
+
           while IFS= read -r LOCALE_DIR; do
             mkdir -p "$LOCALE_DIR/changelogs"
-            cp .ci/release-notes.txt "$LOCALE_DIR/changelogs/default.txt"
+            cp .ci/play-release-notes.txt "$LOCALE_DIR/changelogs/default.txt"
 
             if [ -n "$VERSION_CODE" ]; then
-              cp .ci/release-notes.txt "$LOCALE_DIR/changelogs/${VERSION_CODE}.txt"
+              cp .ci/play-release-notes.txt "$LOCALE_DIR/changelogs/${VERSION_CODE}.txt"
             fi
           done < <(find "$METADATA_ROOT" -mindepth 1 -maxdepth 1 -type d | sort)
 
