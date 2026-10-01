@@ -139,29 +139,6 @@ export default function About() {
             Télécom SudParis dans le cadre du programme Cassiopée.
           </Text>
         </View>
-
-        <View
-          style={[
-            styles.section,
-            { backgroundColor: isDark ? "#1f2937" : "#FFFFFF" },
-          ]}
-        >
-          <Text
-            style={[
-              styles.subHeader,
-              { color: isDark ? "#93c5fd" : "#1F3A93" },
-            ]}
-          >
-            Financement :
-          </Text>
-          <Text
-            style={[styles.paragraph, { color: isDark ? "#d1d5db" : "#333" }]}
-          >
-            Le développement de cette application a profité d’un financement
-            dans le cadre du 7ème Appel à idées innovantes Genopole en
-            partenariat avec le Centre Hospitalier Sud Francilien (CHSF).
-          </Text>
-        </View>
       </ScrollView>
     </SafeAreaView>
   );

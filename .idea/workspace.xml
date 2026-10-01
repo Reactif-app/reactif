@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6e590699-3b7c-4063-883e-6c7e5156dc4c" name="Changes" comment="Fix unmerged files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/about.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/about.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +44,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="beta-releases" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -95,7 +96,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "beta-releases",
+    "git-widget-placeholder": "develop",
     "javascript.preferred.runtime.type.id": "node",
     "last_opened_file_path": "/Users/jacques/PRO/CASSIOPEE/Reactif/assets/documents/home/partners",
     "node.js.detected.package.eslint": "true",
@@ -107,7 +108,7 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/Users/jacques/PRO/CASSIOPEE/Reactif/node_modules/typescript/lib",
+    "ts.external.directory.path": "/Volumes/JACQUES SSD/PRO/CASSIOPEE/Reactif/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -116,6 +117,7 @@
       <recent name="$PROJECT_DIR$/assets/documents/home/partners" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets" />
       <recent name="$PROJECT_DIR$/assets/audio" />
       <recent name="$PROJECT_DIR$/components" />
     </key>
