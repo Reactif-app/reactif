@@ -2,7 +2,7 @@ import { sessionController } from "@/controllers/SessionController";
 import { sessionStore } from "@/store/sessionStore";
 import { formatSecondsToClock } from "@/utils/sessionUtils";
 import * as Haptics from "expo-haptics";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   Animated,
   Easing,
@@ -57,14 +57,57 @@ export default function ActionProgressBar({
     null,
   );
 
-  const blinkAnim = useRef(new Animated.Value(1)).current;
-  const bounceAnim = useRef(new Animated.Value(1)).current;
+  const [blinkAnim] = useState(() => new Animated.Value(1));
+  const [bounceAnim] = useState(() => new Animated.Value(1));
 
   const soundPlayedRef = useRef(false);
   const firstReminderPlayedRef = useRef(false);
   const midReminderPlayedRef = useRef(false);
   const blinkingRef = useRef<Animated.CompositeAnimation | null>(null);
   const isDark = theme === "dark";
+  const hasTimer = durationSeconds > 0;
+  const timeLeft = Math.max(0, durationSeconds - elapsed);
+  const isExpired = hasTimer && elapsed >= durationSeconds;
+  const midpointWarning = Math.max(1, Math.floor(warningSeconds / 2));
+  const reminderSoundKind = resetKey === "remplissage" ? undefined : resetKey;
+
+  const triggerHaptic = useCallback(async () => {
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+  }, []);
+
+  const startBlinking = useCallback(() => {
+    if (blinkingRef.current) return;
+
+    blinkingRef.current = Animated.loop(
+      Animated.sequence([
+        Animated.timing(blinkAnim, {
+          toValue: 0,
+          duration: 500,
+          useNativeDriver: true,
+          easing: Easing.inOut(Easing.ease),
+        }),
+        Animated.timing(blinkAnim, {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: true,
+          easing: Easing.inOut(Easing.ease),
+        }),
+      ]),
+    );
+    blinkingRef.current.start();
+  }, [blinkAnim]);
+
+  const stopBlinking = useCallback(() => {
+    if (blinkingRef.current) {
+      blinkingRef.current.stop();
+      blinkingRef.current = null;
+    }
+    Animated.timing(blinkAnim, {
+      toValue: 1,
+      duration: 200,
+      useNativeDriver: true,
+    }).start();
+  }, [blinkAnim]);
 
   useEffect(() => {
     const unsubscribe = sessionStore.subscribe(() => {
@@ -79,7 +122,7 @@ export default function ActionProgressBar({
     const effectiveLast = lastActionTime ?? localLastActionTime;
 
     if (!effectiveLast) {
-      setElapsed(0);
+      queueMicrotask(() => setElapsed(0));
       soundPlayedRef.current = false;
       firstReminderPlayedRef.current = false;
       midReminderPlayedRef.current = false;
@@ -93,31 +136,27 @@ export default function ActionProgressBar({
       setElapsed(diff);
     };
 
-    updateElapsed();
+    queueMicrotask(updateElapsed);
     const interval = setInterval(updateElapsed, 1000);
     return () => clearInterval(interval);
-  }, [isActive, lastActionTime, localLastActionTime]);
+  }, [isActive, lastActionTime, localLastActionTime, stopBlinking]);
 
   useEffect(() => {
-    setLocalLastActionTime(null);
+    queueMicrotask(() => setLocalLastActionTime(null));
   }, [lastActionTime]);
 
   // Reset only when cancel targets this specific medication timer
   useEffect(() => {
     if (!resetRequest || !resetKey || resetRequest.target !== resetKey) return;
-    setLocalLastActionTime(null);
-    setElapsed(0);
+    queueMicrotask(() => {
+      setLocalLastActionTime(null);
+      setElapsed(0);
+    });
     soundPlayedRef.current = false;
     firstReminderPlayedRef.current = false;
     midReminderPlayedRef.current = false;
     stopBlinking();
-  }, [resetRequest, resetKey]);
-
-  const hasTimer = durationSeconds > 0;
-  const timeLeft = Math.max(0, durationSeconds - elapsed);
-  const isExpired = hasTimer && elapsed >= durationSeconds;
-  const midpointWarning = Math.max(1, Math.floor(warningSeconds / 2));
-  const reminderSoundKind = resetKey === "remplissage" ? undefined : resetKey;
+  }, [resetRequest, resetKey, stopBlinking]);
 
   useEffect(() => {
     if (!isActive) {
@@ -177,45 +216,10 @@ export default function ActionProgressBar({
     count,
     resetKey,
     reminderSoundKind,
+    startBlinking,
+    stopBlinking,
+    triggerHaptic,
   ]);
-
-  const triggerHaptic = async () => {
-    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
-  };
-
-  const startBlinking = () => {
-    if (blinkingRef.current) return; // Already blinking
-
-    blinkingRef.current = Animated.loop(
-      Animated.sequence([
-        Animated.timing(blinkAnim, {
-          toValue: 0,
-          duration: 500,
-          useNativeDriver: true,
-          easing: Easing.inOut(Easing.ease),
-        }),
-        Animated.timing(blinkAnim, {
-          toValue: 1,
-          duration: 500,
-          useNativeDriver: true,
-          easing: Easing.inOut(Easing.ease),
-        }),
-      ]),
-    );
-    blinkingRef.current.start();
-  };
-
-  const stopBlinking = () => {
-    if (blinkingRef.current) {
-      blinkingRef.current.stop();
-      blinkingRef.current = null;
-    }
-    Animated.timing(blinkAnim, {
-      toValue: 1,
-      duration: 200,
-      useNativeDriver: true,
-    }).start();
-  };
 
   const handlePress = () => {
     void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);

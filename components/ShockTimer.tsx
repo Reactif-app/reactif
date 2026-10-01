@@ -3,12 +3,11 @@ import { sessionStore } from "@/store/sessionStore";
 import { Ionicons } from "@expo/vector-icons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import * as Haptics from "expo-haptics";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   Animated,
   Easing,
   GestureResponderEvent,
-  Pressable,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -63,14 +62,14 @@ export default function ShockTimer({
   const [timeLeft, setTimeLeft] = useState(effectiveDurationSeconds);
   const [localStartTime, setLocalStartTime] = useState<number | null>(null);
 
-  const scaleAnim = useRef(new Animated.Value(1)).current;
+  const [scaleAnim] = useState(() => new Animated.Value(1));
   const soundPlayedRef = useRef(false);
   const firstReminderPlayedRef = useRef(false);
   const midReminderPlayedRef = useRef(false);
   const blinkingRef = useRef<Animated.CompositeAnimation | null>(null);
 
-  const shockBounceAnim = useRef(new Animated.Value(1)).current;
-  const analysisBounceAnim = useRef(new Animated.Value(1)).current;
+  const [shockBounceAnim] = useState(() => new Animated.Value(1));
+  const [analysisBounceAnim] = useState(() => new Animated.Value(1));
 
   const availableWidth = width - 32 - 20;
   const circleSize = Math.min((availableWidth - 20) / 2, 170);
@@ -101,12 +100,46 @@ export default function ShockTimer({
     sessionStore.getPediatricData()?.energyDose ?? null,
   );
 
+  const startBlinking = useCallback(() => {
+    if (blinkingRef.current) return;
+
+    blinkingRef.current = Animated.loop(
+      Animated.sequence([
+        Animated.timing(scaleAnim, {
+          toValue: 1.05,
+          duration: 500,
+          useNativeDriver: true,
+          easing: Easing.inOut(Easing.ease),
+        }),
+        Animated.timing(scaleAnim, {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: true,
+          easing: Easing.inOut(Easing.ease),
+        }),
+      ]),
+    );
+    blinkingRef.current.start();
+  }, [scaleAnim]);
+
+  const stopBlinking = useCallback(() => {
+    if (blinkingRef.current) {
+      blinkingRef.current.stop();
+      blinkingRef.current = null;
+    }
+    Animated.timing(scaleAnim, {
+      toValue: 1,
+      duration: 200,
+      useNativeDriver: true,
+    }).start();
+  }, [scaleAnim]);
+
   useEffect(() => {
     if (!isActive) return;
 
     // If there's no start time for shock or analysis, show full duration
     if (!effectiveStartTime && !effectiveAnalysisStart) {
-      setTimeLeft(effectiveDurationSeconds);
+      queueMicrotask(() => setTimeLeft(effectiveDurationSeconds));
       stopBlinking();
       scaleAnim.setValue(1);
       soundPlayedRef.current = false;
@@ -145,23 +178,29 @@ export default function ShockTimer({
       setTimeLeft(effectiveDurationSeconds);
     };
 
-    updateTimer();
+    queueMicrotask(updateTimer);
     const interval = setInterval(updateTimer, 1000);
     return () => clearInterval(interval);
   }, [
+    effectiveDurationSeconds,
     isActive,
+    isNeonatal,
     effectiveStartTime,
     effectiveAnalysisStart,
     analysisSuppressedByShock,
     durationSeconds,
     lastShockTime,
+    scaleAnim,
+    stopBlinking,
   ]);
 
   useEffect(() => {
     // Sync local state if prop updates (e.g. shock delivered or cancelled)
-    setLocalStartTime(null);
-    // Keep localShockCount in sync with prop updates
-    setLocalShockCount(shockCount || 0);
+    queueMicrotask(() => {
+      setLocalStartTime(null);
+      // Keep localShockCount in sync with prop updates
+      setLocalShockCount(shockCount || 0);
+    });
   }, [lastShockTime, shockCount]);
 
   useEffect(() => {
@@ -173,31 +212,41 @@ export default function ShockTimer({
   }, []);
 
   useEffect(() => {
-    setLocalLastAnalysisTime(null);
-    setAnalysisSuppressedByShock(false);
+    queueMicrotask(() => {
+      setLocalLastAnalysisTime(null);
+      setAnalysisSuppressedByShock(false);
+    });
   }, [lastAnalysisTime]);
 
   useEffect(() => {
     // Once store catches up with a persisted shock timestamp, normal precedence logic is enough.
-    setAnalysisSuppressedByShock(false);
+    queueMicrotask(() => setAnalysisSuppressedByShock(false));
   }, [lastShockTime]);
 
   // Reset this timer only when cancel targets the shock/analyse timer
   useEffect(() => {
     if (!resetRequest || resetRequest.target !== "shockTimer") return;
 
-    setLocalStartTime(null);
-    setLocalLastAnalysisTime(null);
-    if (resetRequest.sourceEventType === "shock") {
-      setLocalShockCount((c) => Math.max(0, c - 1));
-    }
-    setTimeLeft(effectiveDurationSeconds);
+    queueMicrotask(() => {
+      setLocalStartTime(null);
+      setLocalLastAnalysisTime(null);
+      if (resetRequest.sourceEventType === "shock") {
+        setLocalShockCount((c) => Math.max(0, c - 1));
+      }
+      setTimeLeft(effectiveDurationSeconds);
+    });
     stopBlinking();
     scaleAnim.setValue(1);
     soundPlayedRef.current = false;
     firstReminderPlayedRef.current = false;
     midReminderPlayedRef.current = false;
-  }, [resetRequest, durationSeconds]);
+  }, [
+    durationSeconds,
+    effectiveDurationSeconds,
+    resetRequest,
+    scaleAnim,
+    stopBlinking,
+  ]);
 
   const midpointWarning = Math.max(1, Math.floor(warningSeconds / 2));
 
@@ -242,41 +291,7 @@ export default function ShockTimer({
         midReminderPlayedRef.current = false;
       }
     }
-  }, [isActive, midpointWarning, timeLeft, warningSeconds]);
-
-  const startBlinking = () => {
-    if (blinkingRef.current) return;
-
-    blinkingRef.current = Animated.loop(
-      Animated.sequence([
-        Animated.timing(scaleAnim, {
-          toValue: 1.05,
-          duration: 500,
-          useNativeDriver: true,
-          easing: Easing.inOut(Easing.ease),
-        }),
-        Animated.timing(scaleAnim, {
-          toValue: 1,
-          duration: 500,
-          useNativeDriver: true,
-          easing: Easing.inOut(Easing.ease),
-        }),
-      ]),
-    );
-    blinkingRef.current.start();
-  };
-
-  const stopBlinking = () => {
-    if (blinkingRef.current) {
-      blinkingRef.current.stop();
-      blinkingRef.current = null;
-    }
-    Animated.timing(scaleAnim, {
-      toValue: 1,
-      duration: 200,
-      useNativeDriver: true,
-    }).start();
-  };
+  }, [isActive, midpointWarning, startBlinking, stopBlinking, timeLeft, warningSeconds]);
 
   const handleShockPress = () => {
     void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);

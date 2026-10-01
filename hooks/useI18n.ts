@@ -25,7 +25,7 @@ export const useI18n = () => {
   useEffect(() => {
     const unsubscribe = subscribeLocale(refreshLocale);
     syncLocaleWithDeviceSettings();
-    refreshLocale();
+    queueMicrotask(refreshLocale);
     return () => unsubscribe();
   }, [refreshLocale]);
 

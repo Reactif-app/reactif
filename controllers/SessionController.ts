@@ -37,7 +37,7 @@ export class SessionController {
   async playSound(name: SoundName) {
     try {
       await this.audioController.play(name);
-    } catch (e) {
+    } catch {
       // ignore
     }
   }
@@ -51,6 +51,8 @@ export class SessionController {
         (await AsyncStorage.getItem(STORAGE_KEY_PREVIEW_MAX_VOLUME)) === "true";
       if (!previewMaxVolume) return;
 
+      // Optional native module used only in custom Android builds.
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
       const volumeManagerModule = require("react-native-volume-manager");
       const VolumeManager = volumeManagerModule?.VolumeManager;
       if (!VolumeManager?.setVolume) return;
@@ -60,7 +62,7 @@ export class SessionController {
         showUI: false,
         playSound: false,
       });
-    } catch (e) {
+    } catch {
       // ignore
     }
   }
@@ -71,7 +73,7 @@ export class SessionController {
   ) {
     try {
       await this.audioController.playReminderPattern(kind, timerKind);
-    } catch (e) {
+    } catch {
       // ignore
     }
   }
@@ -79,7 +81,7 @@ export class SessionController {
   async stopAllSounds() {
     try {
       await this.audioController.stopAll();
-    } catch (e) {
+    } catch {
       // ignore
     }
   }

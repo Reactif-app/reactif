@@ -20,7 +20,9 @@ import ContextualMenu from "@/components/ContextualMenu";
 import { t } from "@/i18n";
 
 export default function History() {
-  const [sessions, setSessions] = useState<CprSession[]>([]);
+  const [sessions, setSessions] = useState<CprSession[]>(() =>
+    sessionStore.getHistory(),
+  );
   const [isSelectionMode, setIsSelectionMode] = useState(false);
   const [isAllSelected, setIsAllSelected] = useState(false);
   const [selectedSessionIds, setSelectedSessionIds] = useState<Set<string>>(
@@ -50,10 +52,6 @@ export default function History() {
   const outlineButtonTextStyle = { color: outlineColor };
 
   useEffect(() => {
-    // Load history
-    const history = sessionStore.getHistory();
-    setSessions(history);
-
     // Subscribe to store updates to reflect deletions immediately
     const unsubscribe = sessionStore.subscribe(() => {
       setSessions(sessionStore.getHistory());

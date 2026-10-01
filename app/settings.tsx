@@ -41,7 +41,7 @@ export default function SettingsScreen() {
   }, []);
 
   useEffect(() => {
-    setSelectedLocalePreference(localePreference);
+    queueMicrotask(() => setSelectedLocalePreference(localePreference));
   }, [localePreference]);
 
   const {
@@ -50,10 +50,8 @@ export default function SettingsScreen() {
     adrenalineDuration,
     warningSeconds,
     endButtonShortTap,
-    previewMaxVolume,
     updateSettings,
     setEndButtonShortTap,
-    setPreviewMaxVolume,
     resetSettings,
     loading,
   } = useCprSettings();
@@ -65,14 +63,16 @@ export default function SettingsScreen() {
 
   useEffect(() => {
     if (!loading) {
-      setShockInput((shockDuration / 60).toString());
-      setCordaroneInput((cordaroneDuration / 60).toString());
-      const adrenalineMinutes = Math.min(
-        5,
-        Math.max(3, Math.round(adrenalineDuration / 60)),
-      );
-      setAdrenalineInput(adrenalineMinutes.toString());
-      setWarningInput(warningSeconds.toString());
+      queueMicrotask(() => {
+        setShockInput((shockDuration / 60).toString());
+        setCordaroneInput((cordaroneDuration / 60).toString());
+        const adrenalineMinutes = Math.min(
+          5,
+          Math.max(3, Math.round(adrenalineDuration / 60)),
+        );
+        setAdrenalineInput(adrenalineMinutes.toString());
+        setWarningInput(warningSeconds.toString());
+      });
     }
   }, [
     adrenalineDuration,

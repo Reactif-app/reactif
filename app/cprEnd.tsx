@@ -4,7 +4,7 @@ import { useFocusEffect } from "expo-router/react-navigation";
 import * as Haptics from "expo-haptics";
 import * as Print from "expo-print";
 import * as Sharing from "expo-sharing";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   Alert,
   Animated,
@@ -71,8 +71,10 @@ export default function CprEnd() {
   const params = useLocalSearchParams();
   const initialMode = params.mode === "death" ? "summary" : "racs";
 
-  const [step, setStep] = useState<"racs" | "summary">(initialMode as any);
-  const [session, setSession] = useState<CprSession | null>(null);
+  const [step, setStep] = useState<"racs" | "summary">(initialMode);
+  const [session, setSession] = useState<CprSession | null>(() =>
+    sessionStore.getSession(),
+  );
   const cprMode = session?.mode || sessionStore.getSession()?.mode || "adult";
   const ecgDurationSeconds = 8 * 60;
   const [ecgTimeLeft, setEcgTimeLeft] = useState(ecgDurationSeconds);
@@ -80,7 +82,7 @@ export default function CprEnd() {
   const [modalVisible, setModalVisible] = useState(false);
   const [racsElapsedSeconds, setRacsElapsedSeconds] = useState(0);
   const racsStartRef = useRef<number | null>(null);
-  const ecgBounceAnim = useRef(new Animated.Value(1)).current;
+  const ecgBounceAnim = useMemo(() => new Animated.Value(1), []);
   const fadeColor =
     isDark ? "#353636" : step === "summary" ? "#f3f4f6" : "#fff";
   const summaryActionBottom = Math.max(16, insets.bottom + 16);
@@ -123,20 +125,17 @@ export default function CprEnd() {
 
   useEffect(() => {
     const current = sessionStore.getSession();
-    setSession(current);
-
-    if (params.mode === "death") {
-      setStep("summary");
-    } else {
-      setStep("racs");
-    }
+    queueMicrotask(() => {
+      setSession(current);
+      setStep(params.mode === "death" ? "summary" : "racs");
+    });
   }, [params.mode]);
 
   useEffect(() => {
     if (step !== "racs") return;
 
     const startTime = Date.now();
-    setEcgTimeLeft(ecgDurationSeconds);
+    queueMicrotask(() => setEcgTimeLeft(ecgDurationSeconds));
     ecgAlertedRef.current = false;
 
     const interval = setInterval(() => {

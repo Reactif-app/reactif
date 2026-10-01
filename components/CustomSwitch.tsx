@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Animated, TouchableOpacity, View } from "react-native";
 
 const CustomSwitch = ({
@@ -18,12 +18,9 @@ const CustomSwitch = ({
   selectionColor: string;
   isDark?: boolean;
 }) => {
-  const [getSelectionMode, setSelectionMode] = useState(selectionMode);
-  const themeAnim = useRef(new Animated.Value(isDark ? 1 : 0)).current;
+  const [themeAnim] = useState(() => new Animated.Value(isDark ? 1 : 0));
 
-  useEffect(() => {
-    setSelectionMode(selectionMode);
-  }, [selectionMode]);
+  const getSelectionMode = selectionMode;
 
   useEffect(() => {
     Animated.timing(themeAnim, {
@@ -34,7 +31,6 @@ const CustomSwitch = ({
   }, [isDark, themeAnim]);
 
   const updatedSwitchData = (val: number) => {
-    setSelectionMode(val);
     onSelectSwitch(val);
   };
 
