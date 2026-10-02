@@ -26,16 +26,8 @@ Paramètres :
 •	Mode sombre
 •	Modifier la nature et les délais des alarmes sonores
 Recherche :
-<<<<<<< HEAD
 L’application RéACTIF est soutenue par le registre électronique des arrêts cardiaques (RéAC). L’horodatage de l’ensemble des séquences de la RCP permet d’améliorer la précision des horaires saisies dans les registres à des fins d’analyse.
+L'application bénéficie aussi du soutiens de la société française de médecine d'urgence (SFMU). 
 
 Confidentialité :
 L’application ne requiert aucun accès à Internet et ne collecte aucune donnée médicale ou personnelle. Elle n’est donc pas soumise au RGPD. Les historiques des RCP sont stockés localement sur l’appareil de l’utilisateur et ne contiennent aucune donnée sensible.
-=======
-L’application RéACTIF est soutenue par le registre électronique des arrêts cardiaques (RéAC). L’horodatage des séquences de RCP permet d’améliorer la précision des horaires saisies dans les registres à des fins d’analyse.
-Confidentialité des données :
-•	Application gratuite et sans publicité ni abonnement
-•	Aucun accès à internet
-•	Aucune collecte de données patient ou personnelle
-•	Stockage de l’historique en locale
->>>>>>> e2af53d (Feature : change Descriptions)

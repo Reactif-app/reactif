@@ -1,1 +1,1 @@
-L'application d'aide à la RCP pour les SMUR
+L'application d'aide à la RCP.

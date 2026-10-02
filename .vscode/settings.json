@@ -3,5 +3,17 @@
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit",
     "source.sortMembers": "explicit"
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.jj": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/casmi-2026-domain-knowledge-for-non-chemists.aux": true,
+    "**/casmi-2026-domain-knowledge-for-non-chemists.log": true,
+    "**/casmi-2026-domain-knowledge-for-non-chemists.gz": true,
+    "**/casmi-2026-domain-knowledge-for-non-chemists.out": true
   }
 }
