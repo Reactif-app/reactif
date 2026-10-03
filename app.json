@@ -2,7 +2,7 @@
   "expo": {
     "name": "Reactif",
     "slug": "Reactif",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./assets/icons/ios-light.png",
     "scheme": "reactif",
