@@ -41,9 +41,10 @@ Workflow:
 2. configuration JDK 17
 3. décodage `ANDROID_KEYSTORE_BASE64` -> `android/app/upload-keystore.jks`
 4. génération `android/key.properties`
-5. build AAB: `./gradlew bundleRelease`
-6. génération changelog
-7. `fastlane android internal_release`
+5. `fastlane android prepare_version`: lecture des AAB/APK courants et des releases de tous les tracks Play, puis `versionCode = max(codes Play, plancher) + 1`
+6. build AAB: `./gradlew bundleRelease`
+7. génération changelog
+8. `fastlane android internal_release`
 
 Lane Fastlane: `fastlane/Fastfile`
 
@@ -58,7 +59,13 @@ Variables/secrets requis:
 - `ANDROID_KEY_PASSWORD`
 - `GOOGLE_PLAY_SERVICE_ACCOUNT_JSON`
 - `ANDROID_UPLOAD_CERT_SHA1` (recommandé)
-- `ANDROID_VERSION_CODE_OFFSET` (variable optionnelle)
+- `ANDROID_VERSION_CODE_FLOOR` (variable optionnelle, dernier code utilisé à préserver; défaut: `1781000164`)
+
+Le code Android n'utilise plus le timestamp Git ni les variables d'offset. Les jobs Android sont sérialisés pour éviter deux uploads CI avec le même code. Une erreur de lecture Play arrête le build; aucun retour au timestamp ou à un petit code n'est effectué.
+
+Le prochain code vaut `1781000165` uniquement si aucun code supérieur n'est retourné par Play. Les releases internes comptent aussi: ne pas remettre le compteur à 1 avant le passage en production. Si un code supérieur a été utilisé dans un ancien upload qui n'est plus visible via l'API, définir `ANDROID_VERSION_CODE_FLOOR` à ce code dans les variables GitHub Actions. Éviter un upload manuel/EAS pendant le job CI, car la sérialisation concerne uniquement ce workflow. Le maximum accepté par Play est `2100000000`.
+
+L'activité Android préfère le portrait, mais `android.hardware.screen.portrait` est déclaré optionnel pour ne pas exclure les appareils à écran fixe. Le plugin `plugins/withOptionalPortraitFeature.js` conserve cette déclaration lors d'un prebuild Expo. Après upload du nouveau bundle, vérifier les raisons d'exclusion dans Play et le rendu de l'application sur écran fixe avant promotion.
 
 ## Commandes locales utiles
 

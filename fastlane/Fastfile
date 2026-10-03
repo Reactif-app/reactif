@@ -1,5 +1,6 @@
 require "pathname"
 require "json"
+require_relative "android_versioning"
 
 default_platform(:android)
 
@@ -82,6 +83,31 @@ platform :ios do
 end
 
 platform :android do
+  desc "Choose the next Android version code from current Google Play uploads and tracks"
+  lane :prepare_version do
+    require "supply"
+
+    json_key_path = required_env("PLAY_JSON_KEY")
+    UI.user_error!("Google Play json key file not found at #{json_key_path}") unless File.exist?(json_key_path)
+
+    client = Supply::Client.make_from_config(params: { json_key: json_key_path, timeout: 300 })
+    version_code = AndroidVersioning.next_code(
+      client: client,
+      package_name: "fr.reactif",
+      floor: optional_env("ANDROID_VERSION_CODE_FLOOR") || AndroidVersioning::DEFAULT_FLOOR
+    )
+    app_json_path = File.expand_path("../app.json", __dir__)
+    version_name = JSON.parse(File.read(app_json_path)).dig("expo", "version").to_s
+    UI.user_error!("Invalid expo.version in app.json") unless version_name.match?(/\A[0-9]+\.[0-9]+\.[0-9]+\z/)
+
+    File.open(required_env("GITHUB_ENV"), "a") do |file|
+      file.puts("ANDROID_VERSION_CODE=#{version_code}")
+      file.puts("ANDROID_VERSION_NAME=#{version_name}")
+      file.puts("RELEASE_TAG=v#{version_name}+#{version_code}")
+    end
+    UI.message("Using Android versionName #{version_name} and versionCode #{version_code}")
+  end
+
   desc "Upload Android AAB to Google Play Internal track with store listing metadata and changelogs"
   lane :internal_release do |options|
     project_root = File.expand_path("..", __dir__)

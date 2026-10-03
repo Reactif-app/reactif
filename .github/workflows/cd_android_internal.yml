@@ -13,6 +13,10 @@ jobs:
   # CD
   deploy_android:
     runs-on: macos-latest
+    # Keep version selection and upload in the same serialized job.
+    concurrency:
+      group: google-play-release
+      cancel-in-progress: false
     # Beta release only
     if: github.ref == 'refs/heads/beta-releases'
     steps:
@@ -129,18 +133,16 @@ jobs:
             fi
           fi
 
-      - name: Set Android version code
+      - name: Install fastlane
         run: |
-          BASE_VERSION_CODE=$(git show -s --format=%ct HEAD)
-          VERSION_CODE_OFFSET="${{ vars.RELEASE_BUILD_NUMBER_OFFSET }}"
-          if [ -z "$VERSION_CODE_OFFSET" ]; then VERSION_CODE_OFFSET="${{ vars.ANDROID_VERSION_CODE_OFFSET }}"; fi
-          if [ -z "$VERSION_CODE_OFFSET" ]; then VERSION_CODE_OFFSET=0; fi
-          VERSION_CODE=$((BASE_VERSION_CODE + VERSION_CODE_OFFSET))
-          VERSION_NAME=$(node -e "const app=require('./app.json'); process.stdout.write(app.expo.version);")
-          echo "ANDROID_VERSION_CODE=$VERSION_CODE" >> "$GITHUB_ENV"
-          echo "ANDROID_VERSION_NAME=$VERSION_NAME" >> "$GITHUB_ENV"
-          echo "RELEASE_TAG=v${VERSION_NAME}+${VERSION_CODE}" >> "$GITHUB_ENV"
-          echo "Using Android versionName $VERSION_NAME and versionCode $VERSION_CODE"
+          gem install multi_json --user-install -N
+          gem install fastlane --user-install -N
+
+      - name: Set Android version code
+        run: fastlane android prepare_version
+        env:
+          PLAY_JSON_KEY: ${{ github.workspace }}/.ci/keys/google-play-service-account.json
+          ANDROID_VERSION_CODE_FLOOR: ${{ vars.ANDROID_VERSION_CODE_FLOOR }}
 
       - name: Build Android release artifacts
         run: |
@@ -243,11 +245,6 @@ jobs:
           name: android-release-description
           path: .ci/release-notes.txt
           if-no-files-found: error
-
-      - name: Install fastlane
-        run: |
-          gem install multi_json --user-install -N
-          gem install fastlane --user-install -N
 
       - name: Upload to Google Play Internal track
         run: |
