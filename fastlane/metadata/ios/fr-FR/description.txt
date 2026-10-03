@@ -25,4 +25,4 @@ Paramètres :
 •	Mode sombre
 •	Modifier la nature et les délais des alarmes sonores
 Recherche :
-L’application RéACTIF est soutenue par le registre électronique des arrêts cardiaques (RéAC). L’horodatage des séquences de RCP permet d’améliorer la précision des horaires saisies dans les registres à des fins d’analyse.
+L’application RéACTIF est soutenue par le registre électronique des arrêts cardiaques (RéAC), ansi que la société française de médecine d'urgence (SFMU). L’horodatage des séquences de RCP permet d’améliorer la précision des horaires saisies dans les registres à des fins d’analyse.
