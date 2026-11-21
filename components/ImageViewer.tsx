@@ -1,14 +1,13 @@
 import { t } from "@/i18n";
 import React from "react";
-import ImageZoomViewer from "react-native-image-zoom-viewer";
 import {
-  Image,
   ImageSourcePropType,
   ImageURISource,
   StyleSheet,
   Text,
-  View,
+  View
 } from "react-native";
+import ImageZoomViewer from "react-native-image-zoom-viewer";
 
 type Props = {
   imgSource: ImageSourcePropType;
@@ -20,15 +19,15 @@ const ZoomViewer = ImageZoomViewer as unknown as React.ComponentType<
 
 export default function ImageViewer({ imgSource }: Props) {
   const imageItem = (() => {
-    const resolved = Image.resolveAssetSource(imgSource);
-    if (resolved?.uri) return { url: resolved.uri };
+/*     const resolved = Image.resolveAssetSource(imgSource);
+    if (resolved?.uri) return { url: resolved.uri }; */
 
     if (typeof imgSource === "number") {
-      return { props: { source: imgSource } };
+      return { url: "", props: { source: imgSource } };
     }
     const src = imgSource as ImageURISource;
     if (src?.uri) return { url: src.uri };
-    return { props: { source: imgSource } };
+    return { url: "", props: { source: imgSource } };
   })();
 
   if (!imgSource) {
